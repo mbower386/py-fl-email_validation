@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Email Validation</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <h1>Dojo Survey</h1>
+  <div class="warning">
+    {% with errors = get_flashed_messages(category_filter=["email_format"]) %}
+    {% if errors %}
+    <div class="alert-message block-message error">
+      <a class="close" href="#">×</a>
+      <ul>
+        {%- for msg in errors %}
+        <li>{{ msg }}</li>
+        {% endfor -%}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+  </div>
+  <form action="/add_email" method="post">
+    <p><input type="text" class="form-control" name="email" placeholder="Email"></p>
+    <button type="submit" class="btn btn-primary ">Submit</button>
+  </form>
+
+</body>
+
+</html>
